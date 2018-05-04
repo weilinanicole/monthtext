@@ -6,10 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts2/iconfont.css">
 </head>
 
 <body>
-    index
+    <div class="wrap">
+        <header>
+            <div class="title">
+                <i class="icon iconfont icon-zuojiantou-01"></i>
+                <li>居家</li>
+                <i class="icon iconfont icon-fangdajing"></i>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li class='on'>床品件套</li>
+                    <li>被枕</li>
+                    <li>家具</li>
+                    <li>收纳</li>
+                    <li>布艺软装</li>
+                    <li>家饰</li>
+                    <li>宠物</li>
+                </ul>
+            </div>
+        </header>
+        <section>
+            <div class="page one">
+
+            </div>
+            <script type="text/x-handlebars-template" id='pageOne'>
+
+            </script>
+            <div class="page two">第2页</div>
+            <div class="page three">第3页</div>
+            <div class="page four">第4页</div>
+            <div class="page five">第5页</div>
+            <div class="page six">第6页</div>
+            <div class="page seven">第7页</div>
+        </section>
+    </div>
 </body>
+<script src='js/require.js'></script>
+<script>
+    require(['./js/config'], function() {
+        require(['index'])
+    })
+</script>
 
 </html>
