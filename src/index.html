@@ -31,18 +31,49 @@
             </div>
         </header>
         <section>
-            <div class="page one">
-
-            </div>
+            <div class="page one"></div>
             <script type="text/x-handlebars-template" id='pageOne'>
+                {{#each one}}
 
+                <li data_id={{this.id}} type='one'>
+                    <img src={{this.cover}}>
+                    <p>{{this.title}}</p>
+                    <h6>{{this.theme}}</h6>
+                    <h5>{{this.pri}}</h5>
+                </li>
+                {{/each}}
             </script>
-            <div class="page two">第2页</div>
-            <div class="page three">第3页</div>
-            <div class="page four">第4页</div>
-            <div class="page five">第5页</div>
-            <div class="page six">第6页</div>
-            <div class="page seven">第7页</div>
+            <div class="page two" style='display: none'></div>
+            <script type="text/x-handlebars-template" id='pageTwo'>
+                {{#each two}}
+
+                <li data_id={{this.id}} type='two'>
+                    <img src={{this.cover}}>
+                    <p>{{this.title}}</p>
+                    <h6>{{this.theme}}</h6>
+                    <h5>{{this.pri}}</h5>
+                </li>
+
+
+                {{/each}}
+            </script>
+            <div class="page three" style='display: none'></div>
+            <script type="text/x-handlebars-template" id='pageThree'>
+                {{#each three}}
+
+                <li data_id={{this.id}} type='three'>
+                    <img src={{this.cover}}>
+                    <p>{{this.title}}</p>
+                    <h6>{{this.theme}}</h6>
+                    <h5>{{this.pri}}</h5>
+                </li>
+
+                {{/each}}
+            </script>
+            <div class="page four" style='display: none'>第4页</div>
+            <div class="page five" style='display: none'>第5页</div>
+            <div class="page six" style='display: none'>第6页</div>
+            <div class="page seven" style='display: none'>第7页</div>
         </section>
     </div>
 </body>

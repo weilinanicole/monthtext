@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/detail.css">
+    <link rel="stylesheet" href="../fonts2/iconfont.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <li><i class="icon iconfont icon-zuojiantou-01 back"></i></li>
+            <li class='tab-btn'><span class='on'>商品</span><span>详情</span></li>
+            <li>
+                <i class="icon iconfont icon-shouye"></i>
+                <i class="icon iconfont icon-fenxiang4"></i>
+            </li>
+        </header>
+        <section>
+            <div class="shop pages">
+                <!-- 大图渲染 -->
+                <div class="imgbox"></div>
+                <script type="text/x-handlebars-template" id='imgbox'>
+                    {{#each this}}
+                    <li>
+                        <img src=../{{this.cover}}>
+                    </li>
+                    {{/each}}
+                </script>
+                <!-- 大图渲染 -->
+                <div class="items"></div>
+                <script type="text/x-handlebars-template" id='itemsbox'>
+                    {{#each this}}
+                    <li class='cir'>
+                        {{#each this.circle}}
+                        <span>{{this}}</span>{{/each}}
+                    </li>
+                    <li>{{this.title}}</li>
+                    <li>{{this.theme}}</li>
+                    <li>{{this.pri}}</li>
+                    <li>{{this.level}}</li>
+                    <li>{{this.server}}</li>
+                    {{/each}}
+                </script>
+            </div>
+
+
+
+            <div class="another pages" style='display:none'></div>
+            <script type="text/x-handlebars-template" id='another'>
+                {{#each this}}
+                <li>
+                    <span>{{this.season}}</span>
+                    <span>{{this.sea}}</span>
+                </li>
+                <li>
+                    <span>{{this.kuanshi}}</span>
+                    <span>{{this.kuanshis}}</span>
+                </li>
+                <li>
+                    <span>{{this.mianliao}}</span>
+                    <span>{{this.mianliaos}}</span>
+                </li>
+                <li>
+                    <span>{{this.style}}</span>
+                    <span>{{this.styles}}</span>
+                </li>
+                <li>
+                    {{this.chengnuo}}
+                </li>
+                <li>
+                    {{this.peo}}
+                </li>
+                {{/each}}
+            </script>
+        </section>
+
+        <footer>
+            <li>
+                <i class="icon iconfont icon-kefu"></i>
+                <i class="icon iconfont icon-gouwuche"></i>
+                <i class="icon iconfont icon-shoucang2"></i>
+            </li>
+            <li>上架提醒</li>
+            <li>即将上架</li>
+        </footer>
+
+    </div>
+</body>
+<script src='../js/libs/handlebars-v4.0.11.js'></script>
+<script src='../js/libs/jquery-2.1.1.min.js'></script>
+<script>
+    var addr = location.search.slice(4);
+    //回退页面
+    $('.back').on('click', function() {
+        history.go(-1)
+    });
+    //tab切换
+    $('.tab-btn').on('click', 'span', function() {
+        var ind = $(this).index();
+        $(this).addClass('on').siblings().removeClass('on');
+        $('.pages').eq(ind).show().siblings().hide()
+    })
+
+    //渲染页面
+    $.ajax({
+        url: '/api/req?id=' + addr,
+        success: function(data) {
+            var data = JSON.parse(data);
+
+
+            //大图
+            var source = $('#imgbox').html();
+            var template = Handlebars.compile(source);
+            var html = template(data);
+            $('.imgbox').html(html);
+
+            //列表项
+            var source = $('#itemsbox').html();
+            var template = Handlebars.compile(source);
+            var html = template(data);
+            $('.items').html(html);
+
+
+            //详情页
+            var source = $('#another').html();
+            var template = Handlebars.compile(source);
+            var html = template(data);
+            $('.another').html(html);
+        }
+    })
+</script>
+
+</html>

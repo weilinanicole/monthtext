@@ -1,4 +1,4 @@
-require(['jquery', 'iscroll'], function($, IScroll) {
+require(['jquery', 'iscroll', 'handlebars'], function($, IScroll, Handlebars) {
     //iscroll实例化
     var myIscroll = new IScroll('.nav', {
         scrollX: true,
@@ -15,11 +15,18 @@ require(['jquery', 'iscroll'], function($, IScroll) {
         url: '/pageOne',
         success: function(data) {
             var data = JSON.parse(data);
-            console.log(data)
-            rander(data, '#pageOne', '.one', Handlebars)
+            rander(data, '#pageOne', '.one', Handlebars);
+            rander(data, '#pageTwo', '.two', Handlebars);
+            rander(data, '#pageThree', '.three', Handlebars)
         }
-    })
+    });
 
+
+    $('.page').on('click', 'li', function() {
+        var addr = $(this).attr('data_id');
+        var type = $(this).attr('type');
+        location.href = '../../pages/detail.html?id=' + addr + type
+    })
 
 
 })
